@@ -1,12 +1,19 @@
 import React from "react";
+import { Router, Link } from "@reach/router";
 
 import SearchParams from "./SearchParams";
+import Detail from "./Detail";
 
 function App() {
   return (
     <div>
-      <h1>Adopt Me!</h1>
-      <SearchParams />
+      <header>
+        <Link to="/">Adopt Me!</Link>
+      </header>
+      <Router>
+        <SearchParams path="/" />
+        <Detail path="/details/:id" />
+      </Router>
     </div>
   );
 }
