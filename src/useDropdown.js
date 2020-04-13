@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const useDropDown = (label, defaultState, options) => {
-  const [state, setState] = React.useState(defaultState);
+  const [state, setState] = useState(defaultState);
   const id = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
   const Dropdown = () => {
     return (
@@ -16,7 +16,9 @@ const useDropDown = (label, defaultState, options) => {
         >
           <option>All</option>
           {options.map((item) => (
-            <option value={item}>{item}</option>
+            <option key={item} value={item}>
+              {item}
+            </option>
           ))}
         </select>
       </label>
