@@ -1,13 +1,13 @@
 import React from "react";
 import pet from "@frontendmasters/pet";
 import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
 
 class Detail extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isFound: false,
       loading: true,
     };
   }
@@ -23,10 +23,9 @@ class Detail extends React.Component {
           media: animal.photos,
           breed: animal.breeds.primary,
           loading: false,
-          isFound: true,
         });
       } else {
-        this.setState({ loading: false, isFound: false });
+        this.setState({ loading: false });
       }
     });
   }
@@ -34,10 +33,6 @@ class Detail extends React.Component {
   render() {
     if (this.state.loading) {
       return <h1>Loading...</h1>;
-    }
-
-    if (!this.state.loading && !this.state.isFound) {
-      return <h1>Pet info not found</h1>;
     }
 
     const { animal, name, location, description, breed, media } = this.state;
@@ -55,4 +50,10 @@ class Detail extends React.Component {
   }
 }
 
-export default Detail;
+export default function DetailWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <Detail {...props} />
+    </ErrorBoundary>
+  );
+}
