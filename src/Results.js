@@ -15,8 +15,6 @@ const Results = ({ pets }) => {
             media={pet.photos}
             animal={pet.type}
             breed={pet.breeds.primary}
-            url={pet.url}
-            status={pet.status}
             location={`${pet.contact.address.city}, ${pet.contact.address.state}`}
             id={pet.id}
           />
